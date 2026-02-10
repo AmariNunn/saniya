@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { Mail, Instagram, Send, CheckCircle } from "lucide-react";
 
 const contactSchema = z.object({
@@ -13,12 +11,14 @@ const contactSchema = z.object({
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
-type ContactForm = z.infer<typeof contactSchema>;
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,19 +29,39 @@ export function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
-  const form = useForm<ContactForm>({
+  const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: ContactForm) => {
-      await apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => setSubmitted(true),
-  });
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitting(true);
+    setSubmitError(false);
+    try {
+      const formData = new URLSearchParams();
+      formData.append("form-name", "contact");
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("subject", data.subject);
+      formData.append("message", data.message);
 
-  const onSubmit = (data: ContactForm) => mutation.mutate(data);
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <section
@@ -78,10 +98,21 @@ export function ContactSection() {
           </div>
         ) : (
           <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
             onSubmit={form.handleSubmit(onSubmit)}
             className={`space-y-6 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             data-testid="form-contact"
           >
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>
+                Don't fill this out: <input name="bot-field" />
+              </label>
+            </p>
+
             <div className="relative">
               <input
                 {...form.register("name")}
@@ -151,11 +182,11 @@ export function ContactSection() {
               <button
                 type="submit"
                 data-testid="button-submit"
-                disabled={mutation.isPending}
+                disabled={submitting}
                 className="group relative w-full flex items-center justify-center gap-3 py-3.5 border border-[#c9a96e]/30 text-[#c9a96e] text-xs tracking-[0.2em] uppercase font-mono rounded-md transition-all duration-500 hover:border-[#c9a96e]/60 hover:bg-[#c9a96e]/5 disabled:opacity-50 cursor-none"
                 data-cursor-hover
               >
-                {mutation.isPending ? (
+                {submitting ? (
                   <span>Sending...</span>
                 ) : (
                   <>
@@ -166,7 +197,7 @@ export function ContactSection() {
               </button>
             </div>
 
-            {mutation.isError && (
+            {submitError && (
               <p className="text-red-400/80 text-xs text-center" data-testid="text-error">
                 Something went wrong. Please try again.
               </p>
