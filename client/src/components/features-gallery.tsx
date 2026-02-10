@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const features = [
   { src: "/images/features/photo-vogue.jpg", title: "The Photo Vogue", year: "2024" },
@@ -16,46 +18,53 @@ const features = [
 ];
 
 export function FeaturesGallery() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setHeaderVisible(true); },
       { threshold: 0.3 }
     );
-    if (headerRef.current) observer.observe(headerRef.current);
+    const el = document.getElementById("features-header");
+    if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const scrollContent = scrollRef.current;
-    if (!container || !scrollContent) return;
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.95,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.95,
+    }),
+  };
 
-    const onScroll = () => {
-      const rect = container.getBoundingClientRect();
-      const containerHeight = container.offsetHeight;
-      const viewportHeight = window.innerHeight;
-
-      if (rect.top < viewportHeight && rect.bottom > 0) {
-        const scrollProgress = Math.max(0, Math.min(1,
-          (viewportHeight - rect.top) / (containerHeight + viewportHeight)
-        ));
-        const maxTranslate = scrollContent.scrollWidth - window.innerWidth;
-        scrollContent.style.transform = `translateX(${-scrollProgress * maxTranslate}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+  const paginate = useCallback((newDirection: number) => {
+    setDirection(newDirection);
+    setCurrentIndex((prevIndex) => (prevIndex + newDirection + features.length) % features.length);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => paginate(1), 5000);
+    return () => clearInterval(timer);
+  }, [paginate]);
+
   return (
-    <section id="features" data-testid="section-features" className="relative" style={{ background: "#0a0a0a" }}>
-      <div ref={headerRef} className="px-6 md:px-10 pt-24 md:pt-40 pb-8">
+    <section id="features" data-testid="section-features" className="relative h-screen overflow-hidden" style={{ background: "#0a0a0a" }}>
+      <div id="features-header" className="absolute top-24 md:top-32 left-0 right-0 z-20 px-6 md:px-10 pointer-events-none">
         <div className="max-w-[1600px] mx-auto">
           <div className={`transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <span className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Portfolio</span>
@@ -70,52 +79,83 @@ export function FeaturesGallery() {
         </div>
       </div>
 
-      <div
-        ref={containerRef}
-        className="relative"
-        style={{ height: "300vh" }}
-      >
-        <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-          <div
-            ref={scrollRef}
-            className="flex gap-6 md:gap-8 pl-6 md:pl-10 pr-[50vw] items-center"
-            style={{ willChange: "transform" }}
+      <div className="relative h-full w-full flex items-center justify-center">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.5 },
+              scale: { duration: 0.5 },
+            }}
+            className="absolute w-full max-w-[90vw] md:max-w-[70vw] h-[60vh] md:h-[70vh]"
           >
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="relative flex-shrink-0 group"
-                data-testid={`card-feature-${index}`}
-                style={{
-                  width: index % 3 === 0 ? "45vw" : index % 3 === 1 ? "35vw" : "40vw",
-                  maxWidth: index % 3 === 0 ? "600px" : index % 3 === 1 ? "450px" : "520px",
-                }}
-              >
-                <div className="relative overflow-hidden rounded-md film-grain">
-                  <img
-                    src={feature.src}
-                    alt={feature.title}
-                    className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    style={{
-                      height: index % 2 === 0 ? "65vh" : "55vh",
-                      objectFit: "cover",
-                    }}
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    <p className="text-[#f5f0eb] font-serif text-lg md:text-xl" data-testid={`text-feature-title-${index}`}>
-                      {feature.title}
+            <div className="relative w-full h-full overflow-hidden rounded-lg group shadow-2xl">
+              <img
+                src={features[currentIndex].src}
+                alt={features[currentIndex].title}
+                className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <p className="text-[#c9a96e] text-xs md:text-sm tracking-[0.3em] uppercase font-mono mb-2">
+                    {features[currentIndex].year}
+                  </p>
+                  <h3 className="text-[#f5f0eb] font-serif text-3xl md:text-5xl lg:text-6xl mb-2">
+                    {features[currentIndex].title}
+                  </h3>
+                  {features[currentIndex].subtitle && (
+                    <p className="text-[#a09890] text-sm md:text-lg tracking-wide uppercase">
+                      {features[currentIndex].subtitle}
                     </p>
-                    {feature.subtitle && (
-                      <p className="text-[#a09890] text-xs mt-0.5">{feature.subtitle}</p>
-                    )}
-                    <p className="text-[#c9a96e] text-xs tracking-wider mt-1 font-mono">{feature.year}</p>
-                  </div>
-                </div>
+                  )}
+                </motion.div>
               </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="absolute inset-x-0 bottom-12 md:bottom-20 z-30 flex items-center justify-center gap-8 md:gap-12">
+          <button
+            onClick={() => paginate(-1)}
+            className="group flex items-center gap-2 text-[#a09890] hover:text-[#c9a96e] transition-colors cursor-none p-4"
+            data-cursor-hover
+            data-testid="button-prev"
+          >
+            <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-1" />
+            <span className="text-[10px] tracking-[0.3em] uppercase hidden md:block">Prev</span>
+          </button>
+
+          <div className="flex gap-2">
+            {features.map((_, i) => (
+              <div
+                key={i}
+                className={`h-1 transition-all duration-500 rounded-full ${
+                  i === currentIndex ? "w-8 bg-[#c9a96e]" : "w-2 bg-white/20"
+                }`}
+              />
             ))}
           </div>
+
+          <button
+            onClick={() => paginate(1)}
+            className="group flex items-center gap-2 text-[#a09890] hover:text-[#c9a96e] transition-colors cursor-none p-4"
+            data-cursor-hover
+            data-testid="button-next"
+          >
+            <span className="text-[10px] tracking-[0.3em] uppercase hidden md:block">Next</span>
+            <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+          </button>
         </div>
       </div>
     </section>
