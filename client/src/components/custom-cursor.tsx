@@ -26,7 +26,7 @@ export function CustomCursor() {
       mouseY = e.clientY;
 
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+        cursorRef.current.style.transform = `translate(${mouseX - 8}px, ${mouseY - 8}px)`;
       }
     };
 
@@ -69,15 +69,18 @@ export function CustomCursor() {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{ willChange: "transform" }}
       >
         <div
           className="rounded-full transition-all duration-200 ease-out"
           style={{
-            width: isHovering ? 12 : 8,
-            height: isHovering ? 12 : 8,
-            backgroundColor: "hsl(40 50% 55%)",
+            width: isHovering ? 18 : 16,
+            height: isHovering ? 18 : 16,
+            backgroundColor: "#f5f0eb",
+            boxShadow: isHovering
+              ? "0 0 16px 4px hsl(40 50% 55% / 0.5), 0 0 30px 8px hsl(40 50% 55% / 0.2)"
+              : "0 0 10px 3px hsl(40 50% 55% / 0.35), 0 0 20px 6px hsl(40 50% 55% / 0.12)",
           }}
         />
       </div>
@@ -87,12 +90,12 @@ export function CustomCursor() {
         style={{ willChange: "transform" }}
       >
         <div
-          className="rounded-full border transition-all duration-300 ease-out"
+          className="rounded-full transition-all duration-300 ease-out"
           style={{
-            width: isHovering ? 56 : 40,
-            height: isHovering ? 56 : 40,
-            borderColor: isHovering ? "hsl(40 50% 55% / 0.6)" : "hsl(40 50% 55% / 0.3)",
-            backgroundColor: isHovering ? "hsl(40 50% 55% / 0.05)" : "transparent",
+            width: isHovering ? 60 : 44,
+            height: isHovering ? 60 : 44,
+            border: isHovering ? "1.5px solid hsl(40 50% 55% / 0.7)" : "1.5px solid hsl(40 50% 55% / 0.4)",
+            backgroundColor: isHovering ? "hsl(40 50% 55% / 0.08)" : "transparent",
           }}
         />
       </div>
