@@ -1,0 +1,258 @@
+# Replit Prompt: Saniya Allen — High-End Model Portfolio Redesign
+
+## Project Overview
+
+Build a **static site** (HTML/CSS/JS — no frameworks, no build tools) deployable to **Netlify** for model **Saniya Allen**. This is a full redesign of her current portfolio at [saniyallen.com](https://www.saniyallen.com/). The current site is a basic Format.com template with a flat image grid. The redesign should feel like a **luxury fashion editorial website** — think Vogue digital, high-end agency books, or Awwwards-winning model portfolios.
+
+---
+
+## Tech Stack (Keep It Simple & Static)
+
+- **Pure HTML5, CSS3, JavaScript** — no React, no Vue, no build step
+- **GSAP 3 + ScrollTrigger** (CDN) — for all scroll animations, parallax, pinning
+- **Lenis** (CDN) — for buttery smooth scrolling
+- **CSS Custom Properties** for theming
+- **Google Fonts** — use a high-fashion serif + clean sans-serif pairing
+- Deploy-ready for **Netlify** (just an `index.html` + assets folder)
+
+---
+
+## Site Structure (Single Page with Defined Sections)
+
+```
+index.html
+├── Hero / Landing (full-screen cinematic intro)
+├── About / Bio Section
+├── Gallery: Features (editorial/magazine work)
+├── Gallery: UGC (user-generated content / social)
+├── Rotating 3D Photo Gallery (showstopper section)
+├── Stats / Highlights Ticker
+├── Contact / Inquiries Form
+└── Footer
+```
+
+---
+
+## Section-by-Section Design Specs
+
+### 1. HERO — Cinematic Full-Screen Intro
+- **Full-viewport** landing with a single striking hero image of Saniya (or a looping short video clip if available)
+- Her name `SANIYA ALLEN` in **oversized, elegant serif typography** (like Playfair Display or Cormorant Garamond) — minimum 10vw font size
+- Text should **split-animate in** letter by letter using GSAP SplitText-style effect (manually split spans)
+- Subtitle text: `MODEL · CREATIVE · MUSE` in a small tracked-out sans-serif beneath
+- **Parallax**: hero image moves at 0.5x scroll speed, text moves at 1.2x — creates depth
+- Smooth **clip-path reveal** animation on load — image reveals from center outward like a curtain opening
+- Navigation: minimal floating nav (transparent, appears on scroll) with links: `Features` | `UGC` | `Inquiries`
+- **Mouse-follow subtle glow effect** — a soft radial gradient follows the cursor over the hero
+
+### 2. ABOUT — Elegant Bio Reveal
+- Two-column layout: large portrait image on left (60% width), text on right
+- Image has a **parallax float** — moves slightly slower than scroll
+- Text fades in with a **staggered line-by-line reveal** triggered by ScrollTrigger
+- Typography: elegant serif for name, clean sans-serif for body
+- Include a subtle **horizontal line animation** that draws itself across the section
+- Bio text example: *"Nashville-based model with a passion for editorial storytelling, brand campaigns, and creative direction."*
+- Keep it short — 3-4 sentences max. Let the visuals do the talking.
+
+### 3. FEATURES GALLERY — Magazine-Style Scroll Experience
+- **Horizontal scroll section** pinned to viewport — user scrolls vertically but images move horizontally
+- Each image is large (70-80vh height), with a slight **rotation on scroll** (±2deg tilt as they enter/exit)
+- Images should have a **film-grain overlay** (CSS pseudo-element with noise texture)
+- On hover: images scale up 1.05x with a smooth ease, and a **caption slides up** from the bottom (shoot name, publication, year)
+- Between images, use **varied spacing** — not a rigid grid. Some images overlap slightly. Editorial chaos.
+- Section header: `FEATURES` in huge outlined/stroke text that scrolls at a different speed (parallax text)
+- ScrollTrigger scrub animation — images are tied to scroll position, not time
+
+### 4. UGC GALLERY — Masonry / Staggered Grid
+- Masonry-style grid with **staggered fade-in** animations (each image enters with a slight delay and Y-offset)
+- Mix of portrait and landscape orientations
+- On hover: **grayscale-to-color transition** (images start slightly desaturated, full color on hover)
+- **Infinite scroll feel** — images populate as user scrolls down
+- Lightbox on click: full-screen image view with blur backdrop and smooth scale-up animation
+- Section header: `UGC` with the same oversized outlined text treatment as Features
+
+### 5. ROTATING 3D GALLERY — The Showstopper ✨
+- **3D CSS carousel** — images arranged in a circular ring using `transform: rotateY()` and `translateZ()`
+- Auto-rotates slowly, but user can **drag to spin** (touch + mouse)
+- Each image card has a subtle **reflection effect** underneath (CSS pseudo-element with opacity gradient)
+- On hover over a card: it **pops forward** (translateZ increases), slight glow/shadow
+- The whole carousel sits on a **dark background section** with a subtle radial gradient
+- Smooth GSAP-powered rotation with inertia (keeps spinning a bit after drag release)
+- Mobile: falls back to a **swipeable horizontal carousel** with snap points
+
+### 6. STATS / HIGHLIGHTS TICKER
+- Horizontal auto-scrolling ticker strip (like a stock ticker or news crawler)
+- Content: `✦ VOGUE ✦ ELLE ✦ 50K+ FOLLOWERS ✦ NASHVILLE ✦ AVAILABLE WORLDWIDE ✦` (repeat infinitely)
+- Pure CSS animation (`@keyframes translateX` loop) — lightweight, no JS needed
+- Sits between sections as a visual break
+- **Two strips** moving in opposite directions for a dynamic feel
+- Monospaced or tight sans-serif font, all caps, tracked out
+
+### 7. CONTACT / INQUIRIES
+- Clean, minimal form: Name, Email, Subject (dropdown: Booking / Collaboration / General), Message
+- **Floating label inputs** — labels animate up when focused
+- Submit button with a **magnetic hover effect** (button subtly follows cursor when near)
+- Background: subtle gradient or a blurred version of a portfolio image
+- Include social links: Instagram icon, Email icon — minimal, elegant
+- Form submits to **Netlify Forms** (just add `netlify` attribute to form tag — zero backend needed)
+- Success state: the form fades out and a `Thank you ✦` message fades in
+
+### 8. FOOTER
+- Minimal: `© 2025 Saniya Allen. All Rights Reserved.`
+- Small social icons row
+- **Scroll-to-top** smooth scroll on logo click
+- The entire footer section has a **reveal animation** — content slides up as it enters viewport
+
+---
+
+## Global Design System
+
+### Color Palette
+```css
+:root {
+  --bg-primary: #0a0a0a;         /* Rich black */
+  --bg-secondary: #141414;       /* Soft black for alternating sections */
+  --text-primary: #f5f0eb;       /* Warm off-white / cream */
+  --text-secondary: #a09890;     /* Muted warm gray */
+  --accent: #c9a96e;             /* Warm gold — for highlights, links, hover states */
+  --accent-hover: #e0c68a;       /* Lighter gold for hover */
+}
+```
+
+### Typography
+```
+Headings: "Cormorant Garamond", serif — elegant, high-fashion
+Body: "Inter" or "Outfit", sans-serif — clean, modern
+Accent/Ticker: "Space Grotesk" or "JetBrains Mono" — for the ticker strip
+```
+
+### Global Animations & Micro-Interactions
+- **Custom cursor**: Replace default cursor with a small circle that scales up on hoverable elements
+- **Smooth scroll**: Use Lenis for native-feeling smooth scroll across the whole page
+- **Page load sequence**: Black screen → logo fade-in → clip-path reveal of hero → nav slides down
+- **All scroll animations**: Use GSAP ScrollTrigger with `scrub: true` for scroll-linked motion
+- **Image loading**: Use `loading="lazy"` on all images, add a subtle blur-to-sharp placeholder transition
+- **Page transitions**: Since it's single-page, use smooth scrollTo for nav links with GSAP ScrollTo plugin
+
+---
+
+## Animation Library Setup (CDN Links)
+
+```html
+<!-- Lenis Smooth Scroll -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+<!-- GSAP Core + Plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+```
+
+---
+
+## Reference Sites for Design Inspiration
+
+Study these for layout and vibe (do NOT copy code, just match the energy):
+
+| Reference | What to Take From It |
+|-----------|---------------------|
+| [karliekloss.com](https://www.karliekloss.com) | Full-screen imagery, clean nav, fashion-editorial feel |
+| [largo.studio](https://largo.studio/) | Smooth parallax, cinematic scroll, bold typography |
+| [ever.ru](https://ever.ru/) | Snap scroll + parallax reveal, immersive feel |
+| [Emily DiDonato's site](https://emilydidonato.com) | Minimalist model portfolio, bold imagery + white space |
+| [Awwwards Portfolio Winners](https://www.awwwards.com/websites/portfolio/) | General high-end web design trends |
+| [Chanelle Renee Portfolio](https://chanellerenee.com) | Editorial + lifestyle photo mixing, versatile layout |
+
+---
+
+## File Structure
+
+```
+/
+├── index.html          ← Single page, all sections
+├── css/
+│   └── style.css       ← All styles (custom properties, animations, responsive)
+├── js/
+│   └── main.js         ← GSAP animations, Lenis init, carousel logic, cursor
+├── images/
+│   ├── hero.jpg
+│   ├── about.jpg
+│   ├── features/       ← 6-10 editorial images
+│   ├── ugc/            ← 8-12 UGC images
+│   └── carousel/       ← 6-8 rotating gallery images
+└── netlify.toml        ← (optional) Netlify config for redirects/headers
+```
+
+---
+
+## Placeholder Images
+
+Since we don't have Saniya's actual photos in this build, use **high-quality placeholder images** from:
+- `https://images.unsplash.com/photo-[ID]?w=800&q=80` (fashion/model photography)
+- Use consistent warm-tone, editorial-style photography
+- **Important**: Add a comment at the top of the HTML noting that all placeholder images should be replaced with Saniya's actual portfolio photos before going live
+
+---
+
+## Responsive Breakpoints
+
+```css
+/* Mobile First */
+@media (min-width: 768px)  { /* Tablet */ }
+@media (min-width: 1024px) { /* Desktop */ }
+@media (min-width: 1440px) { /* Large Desktop */ }
+```
+
+- Mobile: Stack everything vertically, horizontal scroll becomes vertical swipe gallery, 3D carousel becomes horizontal swipe
+- Touch: All hover effects should have tap equivalents
+- Performance: Reduce/disable parallax on mobile (`ScrollTrigger.matchMedia`)
+
+---
+
+## Netlify Deployment Notes
+
+- Add `netlify` attribute to the contact form: `<form name="contact" method="POST" data-netlify="true">`
+- Add a hidden input for bot protection: `<input type="hidden" name="form-name" value="contact">`
+- Optional `netlify.toml`:
+```toml
+[build]
+  publish = "/"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=31536000"
+```
+
+---
+
+## Performance Targets
+
+- **Lighthouse**: 90+ on all metrics
+- **First Contentful Paint**: < 1.5s
+- All images: WebP format, max 200KB each, proper `srcset` for responsive
+- GSAP animations: Use `will-change: transform` only on animated elements
+- Lazy load everything below the fold
+
+---
+
+## Summary of Key "Cool Factor" Features
+
+1. ✨ **Letter-by-letter name reveal** on hero load
+2. 🎞️ **Horizontal scroll gallery** (pinned, scrubbed to scroll)
+3. 🔄 **3D rotating photo carousel** (drag-to-spin with inertia)
+4. 🖱️ **Custom cursor** that morphs on hover
+5. 📜 **Parallax depth** on images and text throughout
+6. 🎬 **Cinematic clip-path reveal** on page load
+7. 🏷️ **Infinite ticker strip** with brand highlights
+8. 🌑 **Dark luxury aesthetic** with gold accents
+9. 🧲 **Magnetic button** on the contact CTA
+10. 🪟 **Image lightbox** with blur backdrop in UGC section
+
+---
+
+## Final Note
+
+This should feel like opening a high-fashion magazine in digital form. Every scroll should reveal something visually delightful. The photography is the star — the design and animations exist to **elevate** the images, never compete with them. Keep the code clean, performant, and deployable with zero build steps. Just drag the folder to Netlify and go live.

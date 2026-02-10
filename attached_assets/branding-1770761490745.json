@@ -1,0 +1,85 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Freight Sans Book",
+      "role": "body"
+    },
+    {
+      "family": "Alegreya",
+      "role": "heading"
+    },
+    {
+      "family": "Arial",
+      "role": "unknown"
+    }
+  ],
+  "colors": {
+    "primary": "#7A765A",
+    "accent": "#CECAAF",
+    "background": "#FFFFFF",
+    "textPrimary": "#545454",
+    "link": "#CECAAF"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Freight Sans Book",
+      "heading": "Alegreya"
+    },
+    "fontStacks": {
+      "heading": [
+        "Alegreya",
+        "serif"
+      ],
+      "body": [
+        "Freight Sans Book",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Freight Sans Book",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "36px",
+      "h2": "36px",
+      "body": "0px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "3px"
+  },
+  "components": {},
+  "images": {
+    "logo": null,
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "File saved at: attached_assets/ogImage.jpg"
+  },
+  "__framework_hints": [],
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "art enthusiasts and potential clients"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.8,
+    "colors": 0.9,
+    "overall": 0.8500000000000001
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": false,
+      "llmSucceeded": false,
+      "finalSource": "none"
+    },
+    "buttonClassification": {
+      "llmCalled": false,
+      "llmSucceeded": true
+    }
+  }
+}
