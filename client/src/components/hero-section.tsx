@@ -55,7 +55,7 @@ export function HeroSection() {
             filter: "brightness(0.35) contrast(1.1)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/20 via-transparent to-[#0a0a0a]/70" />
       </div>
 
       <div className="relative z-10 text-center px-4">
