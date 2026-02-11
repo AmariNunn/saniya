@@ -78,8 +78,7 @@ export function FeaturesGallery() {
           </h2>
         </div>
       </div>
-
-      <div className="relative h-full w-full flex items-center justify-center">
+      <div className="relative h-full w-full flex items-center justify-center text-[#dfe0e400]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
