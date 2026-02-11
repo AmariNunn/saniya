@@ -7,17 +7,18 @@ type GalleryItem = {
   alt: string;
 } | {
   type: "video";
-  embedUrl: string;
+  src: string;
   alt: string;
 };
 
 const ugcItems: GalleryItem[] = [
-  { type: "video", embedUrl: "https://drive.google.com/file/d/1-Vid1A7HbsLAlk8jJW3cWrt2VVz5-CPd/preview", alt: "Video Content 1" },
+  { type: "video", src: "/images/ugc/video-1.mp4", alt: "Video Content 1" },
   { type: "image", src: "/images/ugc/ugc-2.jpg", alt: "UGC Content 2" },
   { type: "image", src: "/images/ugc/ugc-3.jpg", alt: "UGC Content 3" },
   { type: "image", src: "/images/ugc/ugc-4.jpg", alt: "UGC Content 4" },
-  { type: "video", embedUrl: "https://drive.google.com/file/d/1KHt0JBpc4Ih8Px67TLLgU_G45V7i9TUz/preview", alt: "Video Content 2" },
-  { type: "video", embedUrl: "https://drive.google.com/file/d/1LnEoWervyVhkpu0egk-YYNDGT_EkTthU/preview", alt: "Video Content 3" },
+  { type: "video", src: "/images/ugc/video-2.mp4", alt: "Video Content 2" },
+  { type: "video", src: "/images/ugc/video-3.mp4", alt: "Video Content 3" },
+  { type: "video", src: "/images/ugc/video-4.mov", alt: "Video Content 4" },
 ];
 
 export function UgcGallery() {
@@ -97,16 +98,17 @@ export function UgcGallery() {
                 }`}
                 data-testid={`card-ugc-${index}`}
                 data-cursor-hover
-                onClick={() => item.type === "image" ? setLightbox(index) : null}
+                onClick={() => setLightbox(index)}
               >
                 {item.type === "video" ? (
                   <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
-                    <iframe
-                      src={item.embedUrl + "?autoplay=1&mute=1"}
-                      title={item.alt}
-                      className="absolute inset-0 w-full h-full border-0 pointer-events-auto"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
+                    <video
+                      src={item.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
                 ) : (
@@ -146,12 +148,14 @@ export function UgcGallery() {
               style={{ aspectRatio: "9/16" }}
               onClick={(e) => e.stopPropagation()}
             >
-              <iframe
-                src={(ugcItems[lightbox] as { embedUrl: string }).embedUrl + "?autoplay=1&mute=1"}
-                title={ugcItems[lightbox].alt}
-                className="w-full h-full border-0 rounded-md"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
+              <video
+                src={ugcItems[lightbox].src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                className="w-full h-full object-cover rounded-md"
               />
             </div>
           ) : (
