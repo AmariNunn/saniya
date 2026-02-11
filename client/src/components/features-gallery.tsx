@@ -67,7 +67,7 @@ export function FeaturesGallery() {
       <div id="features-header" className="absolute top-24 md:top-32 left-0 right-0 z-20 px-6 md:px-10 pointer-events-none">
         <div className="max-w-[1600px] mx-auto">
           <div className={`transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Portfolio</span>
+            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Features</span>
           </div>
           <h2
             className={`font-serif font-light text-[#1a1a1a]/10 leading-none transition-all duration-1000 delay-200 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
