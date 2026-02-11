@@ -13,9 +13,9 @@ type GalleryItem = {
 
 const ugcItems: GalleryItem[] = [
   { type: "video", src: "/images/ugc/video-1.mp4", alt: "Video Content 1" },
-  { type: "image", src: "/images/ugc/ugc-2.jpg", alt: "UGC Content 2" },
+  { type: "image", src: "/images/ugc/ugc-5.jpg", alt: "UGC Content 5" },
   { type: "image", src: "/images/ugc/ugc-3.jpg", alt: "UGC Content 3" },
-  { type: "video", src: "/images/ugc/video-2.mp4", alt: "Video Content 2" },
+  { type: "image", src: "/images/ugc/ugc-6.jpg", alt: "UGC Content 6" },
   { type: "video", src: "/images/ugc/video-3.mp4", alt: "Video Content 3" },
   { type: "video", src: "/images/ugc/video-4.mov", alt: "Video Content 4" },
 ];
