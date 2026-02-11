@@ -88,7 +88,7 @@ export function UgcGallery() {
             UGC
           </h2>
 
-          <div className="masonry-grid">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
             {ugcItems.map((item, index) => (
               <div
                 key={index}
@@ -97,25 +97,27 @@ export function UgcGallery() {
                 }`}
                 data-testid={`card-ugc-${index}`}
                 data-cursor-hover
-                onClick={() => setLightbox(index)}
+                onClick={() => item.type === "image" ? setLightbox(index) : null}
               >
                 {item.type === "video" ? (
-                  <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
+                  <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
                     <iframe
-                      src={item.embedUrl}
+                      src={item.embedUrl + "?autoplay=1&mute=1"}
                       title={item.alt}
-                      className="absolute inset-0 w-full h-full border-0"
+                      className="absolute inset-0 w-full h-full border-0 pointer-events-auto"
                       allow="autoplay; encrypted-media"
                       allowFullScreen
                     />
                   </div>
                 ) : (
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-auto object-cover transition-all duration-500 grayscale-[30%] hover:grayscale-0 hover:scale-105"
-                    loading="lazy"
-                  />
+                  <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-500 grayscale-[30%] hover:grayscale-0 hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
                 )}
               </div>
             ))}
@@ -145,7 +147,7 @@ export function UgcGallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
-                src={(ugcItems[lightbox] as { embedUrl: string }).embedUrl}
+                src={(ugcItems[lightbox] as { embedUrl: string }).embedUrl + "?autoplay=1&mute=1"}
                 title={ugcItems[lightbox].alt}
                 className="w-full h-full border-0 rounded-md"
                 allow="autoplay; encrypted-media"
