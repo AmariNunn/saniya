@@ -1,13 +1,23 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { X } from "lucide-react";
 
-const ugcImages = [
-  { src: "/images/ugc/ugc-1.jpg", alt: "UGC Content 1" },
-  { src: "/images/ugc/ugc-2.jpg", alt: "UGC Content 2" },
-  { src: "/images/ugc/ugc-3.jpg", alt: "UGC Content 3" },
-  { src: "/images/ugc/ugc-4.jpg", alt: "UGC Content 4" },
-  { src: "/images/ugc/ugc-5.jpg", alt: "UGC Content 5" },
-  { src: "/images/ugc/ugc-6.jpg", alt: "UGC Content 6" },
+type GalleryItem = {
+  type: "image";
+  src: string;
+  alt: string;
+} | {
+  type: "video";
+  embedUrl: string;
+  alt: string;
+};
+
+const ugcItems: GalleryItem[] = [
+  { type: "video", embedUrl: "https://drive.google.com/file/d/1-Vid1A7HbsLAlk8jJW3cWrt2VVz5-CPd/preview", alt: "Video Content 1" },
+  { type: "image", src: "/images/ugc/ugc-2.jpg", alt: "UGC Content 2" },
+  { type: "image", src: "/images/ugc/ugc-3.jpg", alt: "UGC Content 3" },
+  { type: "image", src: "/images/ugc/ugc-4.jpg", alt: "UGC Content 4" },
+  { type: "video", embedUrl: "https://drive.google.com/file/d/1KHt0JBpc4Ih8Px67TLLgU_G45V7i9TUz/preview", alt: "Video Content 2" },
+  { type: "video", embedUrl: "https://drive.google.com/file/d/1LnEoWervyVhkpu0egk-YYNDGT_EkTthU/preview", alt: "Video Content 3" },
 ];
 
 export function UgcGallery() {
@@ -28,7 +38,7 @@ export function UgcGallery() {
   useEffect(() => {
     if (!visible) return;
     const timers: NodeJS.Timeout[] = [];
-    ugcImages.forEach((_, i) => {
+    ugcItems.forEach((_, i) => {
       timers.push(setTimeout(() => {
         setVisibleItems(prev => new Set(prev).add(i));
       }, i * 120));
@@ -48,8 +58,8 @@ export function UgcGallery() {
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (lightbox === null) return;
     if (e.key === "Escape") setLightbox(null);
-    if (e.key === "ArrowRight") setLightbox((prev) => prev !== null ? (prev + 1) % ugcImages.length : null);
-    if (e.key === "ArrowLeft") setLightbox((prev) => prev !== null ? (prev - 1 + ugcImages.length) % ugcImages.length : null);
+    if (e.key === "ArrowRight") setLightbox((prev) => prev !== null ? (prev + 1) % ugcItems.length : null);
+    if (e.key === "ArrowLeft") setLightbox((prev) => prev !== null ? (prev - 1 + ugcItems.length) % ugcItems.length : null);
   }, [lightbox]);
 
   useEffect(() => {
@@ -79,7 +89,7 @@ export function UgcGallery() {
           </h2>
 
           <div className="masonry-grid">
-            {ugcImages.map((img, index) => (
+            {ugcItems.map((item, index) => (
               <div
                 key={index}
                 className={`overflow-hidden rounded-md cursor-none transition-all duration-700 ${
@@ -89,12 +99,24 @@ export function UgcGallery() {
                 data-cursor-hover
                 onClick={() => setLightbox(index)}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-auto object-cover transition-all duration-500 grayscale-[30%] hover:grayscale-0 hover:scale-105"
-                  loading="lazy"
-                />
+                {item.type === "video" ? (
+                  <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
+                    <iframe
+                      src={item.embedUrl}
+                      title={item.alt}
+                      className="absolute inset-0 w-full h-full border-0"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-auto object-cover transition-all duration-500 grayscale-[30%] hover:grayscale-0 hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -116,12 +138,28 @@ export function UgcGallery() {
           >
             <X className="w-6 h-6" />
           </button>
-          <img
-            src={ugcImages[lightbox].src}
-            alt={ugcImages[lightbox].alt}
-            className="relative z-10 max-w-[90vw] max-h-[85vh] object-contain rounded-md animate-fade-in-up"
-            onClick={(e) => e.stopPropagation()}
-          />
+          {ugcItems[lightbox].type === "video" ? (
+            <div
+              className="relative z-10 w-[90vw] max-w-[500px] animate-fade-in-up"
+              style={{ aspectRatio: "9/16" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                src={(ugcItems[lightbox] as { embedUrl: string }).embedUrl}
+                title={ugcItems[lightbox].alt}
+                className="w-full h-full border-0 rounded-md"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <img
+              src={(ugcItems[lightbox] as { src: string }).src}
+              alt={ugcItems[lightbox].alt}
+              className="relative z-10 max-w-[90vw] max-h-[85vh] object-contain rounded-md animate-fade-in-up"
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
         </div>
       )}
     </>
