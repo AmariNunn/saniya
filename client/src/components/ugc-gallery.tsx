@@ -8,9 +8,6 @@ const ugcImages = [
   { src: "/images/ugc/ugc-4.jpg", alt: "UGC Content 4" },
   { src: "/images/ugc/ugc-5.jpg", alt: "UGC Content 5" },
   { src: "/images/ugc/ugc-6.jpg", alt: "UGC Content 6" },
-  { src: "/images/hero/eb1.png", alt: "Editorial 1" },
-  { src: "/images/hero/eb2.jpg", alt: "Editorial 2" },
-  { src: "/images/hero/img1390.jpg", alt: "Portrait" },
 ];
 
 export function UgcGallery() {
