@@ -20,6 +20,44 @@ const ugcItems: GalleryItem[] = [
   { type: "video", src: "/images/ugc/video-4.mov", alt: "Video Content 4" },
 ];
 
+function VideoItem({ src, alt }: { src: string; alt: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (videoRef.current) {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(() => {});
+          } else {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    </div>
+  );
+}
+
 export function UgcGallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
@@ -100,16 +138,7 @@ export function UgcGallery() {
                 onClick={() => setLightbox(index)}
               >
                 {item.type === "video" ? (
-                  <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
-                    <video
-                      src={item.src}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  </div>
+                  <VideoItem src={item.src} alt={item.alt} />
                 ) : (
                   <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
                     <img
