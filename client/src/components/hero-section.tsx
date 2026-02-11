@@ -60,8 +60,8 @@ export function HeroSection() {
 
       <div className="relative z-10 text-center px-4">
         <div className="overflow-hidden mb-4">
-          <h1 className="font-serif font-light tracking-[0.15em] leading-none flex flex-wrap justify-center"
-            style={{ fontSize: "clamp(3rem, 10vw, 9rem)" }}
+          <h1 className="font-serif font-light tracking-[0.15em] leading-none flex flex-nowrap justify-center whitespace-nowrap"
+            style={{ fontSize: "clamp(1.8rem, 10vw, 9rem)" }}
           >
             {nameLetters.map((letter, i) => (
               <motion.span
