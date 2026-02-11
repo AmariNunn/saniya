@@ -14,18 +14,32 @@ const carouselImages = [
 export function Carousel3D() {
   const [rotation, setRotation] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState(0);
   const [velocity, setVelocity] = useState(0);
   const [visible, setVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragStartRef = useRef(0);
   const lastMouseRef = useRef(0);
   const lastTimeRef = useRef(0);
   const autoRotateRef = useRef(true);
   const animationRef = useRef<number>();
+  const rotationRef = useRef(0);
 
   const anglePerItem = 360 / carouselImages.length;
-  const radius = typeof window !== "undefined" && window.innerWidth < 768 ? 250 : 400;
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const radius = isMobile ? 220 : 400;
+  const cardWidth = isMobile ? 140 : 200;
+  const cardHeight = isMobile ? 210 : 300;
+  const containerHeight = isMobile ? 300 : 450;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,10 +52,12 @@ export function Carousel3D() {
 
   const animate = useCallback(() => {
     if (!isDragging && autoRotateRef.current) {
-      setRotation((prev) => prev + 0.15);
+      rotationRef.current += 0.15;
+      setRotation(rotationRef.current);
     }
     if (!isDragging && Math.abs(velocity) > 0.1) {
-      setRotation((prev) => prev + velocity);
+      rotationRef.current += velocity;
+      setRotation(rotationRef.current);
       setVelocity((prev) => prev * 0.95);
     }
     animationRef.current = requestAnimationFrame(animate);
@@ -57,17 +73,19 @@ export function Carousel3D() {
   const onPointerDown = (e: React.PointerEvent) => {
     setIsDragging(true);
     autoRotateRef.current = false;
-    setDragStart(e.clientX);
+    dragStartRef.current = e.clientX;
     lastMouseRef.current = e.clientX;
     lastTimeRef.current = Date.now();
     setVelocity(0);
+    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
-    const delta = e.clientX - dragStart;
-    setRotation((prev) => prev + delta * 0.3);
-    setDragStart(e.clientX);
+    const delta = e.clientX - dragStartRef.current;
+    rotationRef.current += delta * 0.3;
+    setRotation(rotationRef.current);
+    dragStartRef.current = e.clientX;
 
     const now = Date.now();
     const dt = now - lastTimeRef.current;
@@ -102,24 +120,28 @@ export function Carousel3D() {
       </div>
 
       <div
-        className={`relative mx-auto transition-all duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
+        ref={containerRef}
+        className={`relative mx-auto transition-opacity duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
         style={{
-          height: typeof window !== "undefined" && window.innerWidth < 768 ? "320px" : "450px",
+          height: `${containerHeight}px`,
           perspective: "1200px",
           cursor: isDragging ? "grabbing" : "grab",
+          touchAction: "pan-y",
+          WebkitUserSelect: "none",
+          userSelect: "none",
         }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
+        onPointerCancel={onPointerUp}
         data-testid="carousel-container"
       >
         <div
-          className="absolute left-1/2 top-1/2 preserve-3d"
+          className="absolute left-1/2 top-1/2"
           style={{
+            transformStyle: "preserve-3d",
             transform: `translate(-50%, -50%) rotateY(${rotation}deg)`,
             transition: isDragging ? "none" : "transform 0.1s linear",
-            willChange: "transform",
           }}
         >
           {carouselImages.map((img, index) => {
@@ -128,21 +150,22 @@ export function Carousel3D() {
             return (
               <div
                 key={index}
-                className="absolute backface-hidden"
+                className="absolute"
                 style={{
+                  transformStyle: "preserve-3d",
+                  backfaceVisibility: "hidden",
                   transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                  left: "-100px",
-                  top: "-150px",
-                  transition: "transform 0.3s ease",
+                  left: `${-cardWidth / 2}px`,
+                  top: `${-cardHeight / 2}px`,
                 }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+                onMouseLeave={() => !isMobile && setHoveredIndex(null)}
               >
                 <div
                   className="relative overflow-hidden rounded-md transition-all duration-300"
                   style={{
-                    width: typeof window !== "undefined" && window.innerWidth < 768 ? "160px" : "200px",
-                    height: typeof window !== "undefined" && window.innerWidth < 768 ? "240px" : "300px",
+                    width: `${cardWidth}px`,
+                    height: `${cardHeight}px`,
                     transform: isHovered ? "translateZ(30px) scale(1.05)" : "translateZ(0)",
                     boxShadow: isHovered
                       ? "0 20px 60px rgba(201, 169, 110, 0.15), 0 0 40px rgba(201, 169, 110, 0.08)"
@@ -152,27 +175,29 @@ export function Carousel3D() {
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover pointer-events-none"
                     loading="lazy"
                     draggable={false}
                   />
                 </div>
-                <div
-                  className="absolute top-full left-0 right-0 h-[60px] mt-1 rounded-md overflow-hidden"
-                  style={{
-                    background: "linear-gradient(to bottom, rgba(201,169,110,0.06), transparent)",
-                    transform: "scaleY(-1)",
-                    opacity: 0.3,
-                    filter: "blur(2px)",
-                  }}
-                >
-                  <img
-                    src={img.src}
-                    alt=""
-                    className="w-full h-full object-cover object-bottom"
-                    draggable={false}
-                  />
-                </div>
+                {!isMobile && (
+                  <div
+                    className="absolute top-full left-0 right-0 h-[60px] mt-1 rounded-md overflow-hidden pointer-events-none"
+                    style={{
+                      background: "linear-gradient(to bottom, rgba(201,169,110,0.06), transparent)",
+                      transform: "scaleY(-1)",
+                      opacity: 0.3,
+                      filter: "blur(2px)",
+                    }}
+                  >
+                    <img
+                      src={img.src}
+                      alt=""
+                      className="w-full h-full object-cover object-bottom"
+                      draggable={false}
+                    />
+                  </div>
+                )}
               </div>
             );
           })}
