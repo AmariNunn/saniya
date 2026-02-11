@@ -69,23 +69,23 @@ export function ContactSection() {
       id="contact"
       data-testid="section-contact"
       className="relative py-24 md:py-40 px-6 md:px-10"
-      style={{ background: "#0a0a0a" }}
+      style={{ background: "#f2efe9" }}
     >
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url('/images/hero/hero-main.jpg')`,
-          filter: "blur(60px) brightness(0.15) saturate(0.5)",
+          filter: "blur(60px) brightness(0.85) saturate(0.3)",
         }}
       />
 
       <div className="relative z-10 max-w-[600px] mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <span className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Get In Touch</span>
-          <h2 className="font-serif font-light text-[#f5f0eb] text-3xl md:text-5xl mb-4" data-testid="text-contact-heading">
+          <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Get In Touch</span>
+          <h2 className="font-serif font-light text-[#1a1a1a] text-3xl md:text-5xl mb-4" data-testid="text-contact-heading">
             Inquiries
           </h2>
-          <p className="text-[#a09890] text-sm">
+          <p className="text-[#5a5550] text-sm">
             Available for bookings, collaborations, and creative projects worldwide.
           </p>
         </div>
@@ -93,8 +93,8 @@ export function ContactSection() {
         {submitted ? (
           <div className="text-center animate-fade-in-up py-12" data-testid="text-success">
             <CheckCircle className="w-12 h-12 text-[#c9a96e] mx-auto mb-4" />
-            <p className="text-[#f5f0eb] font-serif text-2xl mb-2">Thank you</p>
-            <p className="text-[#a09890] text-sm">Your inquiry has been received. I'll get back to you shortly.</p>
+            <p className="text-[#1a1a1a] font-serif text-2xl mb-2">Thank you</p>
+            <p className="text-[#5a5550] text-sm">Your inquiry has been received. I'll get back to you shortly.</p>
           </div>
         ) : (
           <form
@@ -119,9 +119,9 @@ export function ContactSection() {
                 type="text"
                 placeholder=" "
                 data-testid="input-name"
-                className="w-full bg-transparent border-b border-white/10 py-3 px-1 text-[#f5f0eb] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 peer cursor-none"
+                className="w-full bg-transparent border-b border-[#1a1a1a]/15 py-3 px-1 text-[#1a1a1a] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 peer cursor-none"
               />
-              <label className="absolute left-1 top-3 text-[#a09890] text-xs tracking-wider uppercase transition-all duration-300 peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-[#c9a96e] peer-[:not(:placeholder-shown)]:top-[-8px] peer-[:not(:placeholder-shown)]:text-[10px] pointer-events-none">
+              <label className="absolute left-1 top-3 text-[#5a5550] text-xs tracking-wider uppercase transition-all duration-300 peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-[#c9a96e] peer-[:not(:placeholder-shown)]:top-[-8px] peer-[:not(:placeholder-shown)]:text-[10px] pointer-events-none">
                 Name
               </label>
               {form.formState.errors.name && (
@@ -135,9 +135,9 @@ export function ContactSection() {
                 type="email"
                 placeholder=" "
                 data-testid="input-email"
-                className="w-full bg-transparent border-b border-white/10 py-3 px-1 text-[#f5f0eb] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 peer cursor-none"
+                className="w-full bg-transparent border-b border-[#1a1a1a]/15 py-3 px-1 text-[#1a1a1a] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 peer cursor-none"
               />
-              <label className="absolute left-1 top-3 text-[#a09890] text-xs tracking-wider uppercase transition-all duration-300 peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-[#c9a96e] peer-[:not(:placeholder-shown)]:top-[-8px] peer-[:not(:placeholder-shown)]:text-[10px] pointer-events-none">
+              <label className="absolute left-1 top-3 text-[#5a5550] text-xs tracking-wider uppercase transition-all duration-300 peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-[#c9a96e] peer-[:not(:placeholder-shown)]:top-[-8px] peer-[:not(:placeholder-shown)]:text-[10px] pointer-events-none">
                 Email
               </label>
               {form.formState.errors.email && (
@@ -149,13 +149,13 @@ export function ContactSection() {
               <select
                 {...form.register("subject")}
                 data-testid="select-subject"
-                className="w-full bg-transparent border-b border-white/10 py-3 px-1 text-[#f5f0eb] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 cursor-none appearance-none"
-                style={{ background: "#0a0a0a" }}
+                className="w-full bg-transparent border-b border-[#1a1a1a]/15 py-3 px-1 text-[#1a1a1a] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 cursor-none appearance-none"
+                style={{ background: "#f2efe9" }}
               >
-                <option value="" className="bg-[#0a0a0a] text-[#a09890]">Select Subject</option>
-                <option value="booking" className="bg-[#0a0a0a]">Booking</option>
-                <option value="collaboration" className="bg-[#0a0a0a]">Collaboration</option>
-                <option value="general" className="bg-[#0a0a0a]">General Inquiry</option>
+                <option value="" className="bg-[#f2efe9] text-[#5a5550]">Select Subject</option>
+                <option value="booking" className="bg-[#f2efe9]">Booking</option>
+                <option value="collaboration" className="bg-[#f2efe9]">Collaboration</option>
+                <option value="general" className="bg-[#f2efe9]">General Inquiry</option>
               </select>
               {form.formState.errors.subject && (
                 <p className="text-red-400/80 text-[10px] mt-1">{form.formState.errors.subject.message}</p>
@@ -168,9 +168,9 @@ export function ContactSection() {
                 placeholder=" "
                 rows={4}
                 data-testid="input-message"
-                className="w-full bg-transparent border-b border-white/10 py-3 px-1 text-[#f5f0eb] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 resize-none peer cursor-none"
+                className="w-full bg-transparent border-b border-[#1a1a1a]/15 py-3 px-1 text-[#1a1a1a] text-sm outline-none focus:border-[#c9a96e]/50 transition-colors duration-300 resize-none peer cursor-none"
               />
-              <label className="absolute left-1 top-3 text-[#a09890] text-xs tracking-wider uppercase transition-all duration-300 peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-[#c9a96e] peer-[:not(:placeholder-shown)]:top-[-8px] peer-[:not(:placeholder-shown)]:text-[10px] pointer-events-none">
+              <label className="absolute left-1 top-3 text-[#5a5550] text-xs tracking-wider uppercase transition-all duration-300 peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-[#c9a96e] peer-[:not(:placeholder-shown)]:top-[-8px] peer-[:not(:placeholder-shown)]:text-[10px] pointer-events-none">
                 Message
               </label>
               {form.formState.errors.message && (
@@ -210,7 +210,7 @@ export function ContactSection() {
             href="https://www.instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[#a09890] text-xs tracking-wider hover:text-[#c9a96e] transition-colors duration-300 cursor-none"
+            className="flex items-center gap-2 text-[#5a5550] text-xs tracking-wider hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
             data-cursor-hover
             data-testid="link-instagram-contact"
           >
@@ -219,7 +219,7 @@ export function ContactSection() {
           </a>
           <a
             href="mailto:hello@saniyallen.com"
-            className="flex items-center gap-2 text-[#a09890] text-xs tracking-wider hover:text-[#c9a96e] transition-colors duration-300 cursor-none"
+            className="flex items-center gap-2 text-[#5a5550] text-xs tracking-wider hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
             data-cursor-hover
             data-testid="link-email-contact"
           >

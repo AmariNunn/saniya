@@ -63,22 +63,22 @@ export function FeaturesGallery() {
   }, [paginate]);
 
   return (
-    <section id="features" data-testid="section-features" className="relative h-screen overflow-hidden" style={{ background: "#0a0a0a" }}>
+    <section id="features" data-testid="section-features" className="relative h-screen overflow-hidden" style={{ background: "#f2efe9" }}>
       <div id="features-header" className="absolute top-24 md:top-32 left-0 right-0 z-20 px-6 md:px-10 pointer-events-none">
         <div className="max-w-[1600px] mx-auto">
           <div className={`transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-            <span className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Portfolio</span>
+            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Portfolio</span>
           </div>
           <h2
-            className={`font-serif font-light text-[#f5f0eb]/10 leading-none transition-all duration-1000 delay-200 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-            style={{ fontSize: "clamp(3rem, 8vw, 8rem)", WebkitTextStroke: "1px rgba(201, 169, 110, 0.2)" }}
+            className={`font-serif font-light text-[#1a1a1a]/10 leading-none transition-all duration-1000 delay-200 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            style={{ fontSize: "clamp(3rem, 8vw, 8rem)", WebkitTextStroke: "1px rgba(100, 80, 50, 0.15)" }}
             data-testid="text-features-heading"
           >
             FEATURES
           </h2>
         </div>
       </div>
-      <div className="relative h-full w-full flex items-center justify-center text-[#757538]">
+      <div className="relative h-full w-full flex items-center justify-center">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
@@ -127,7 +127,7 @@ export function FeaturesGallery() {
         <div className="absolute inset-x-0 bottom-12 md:bottom-20 z-30 flex items-center justify-center gap-8 md:gap-12">
           <button
             onClick={() => paginate(-1)}
-            className="group flex items-center gap-2 text-[#a09890] hover:text-[#c9a96e] transition-colors cursor-none p-4"
+            className="group flex items-center gap-2 text-[#5a5550] hover:text-[#8a7a5a] transition-colors cursor-none p-4"
             data-cursor-hover
             data-testid="button-prev"
           >
@@ -140,7 +140,7 @@ export function FeaturesGallery() {
               <div
                 key={i}
                 className={`h-1 transition-all duration-500 rounded-full ${
-                  i === currentIndex ? "w-8 bg-[#c9a96e]" : "w-2 bg-white/20"
+                  i === currentIndex ? "w-8 bg-[#c9a96e]" : "w-2 bg-[#1a1a1a]/20"
                 }`}
               />
             ))}
@@ -148,7 +148,7 @@ export function FeaturesGallery() {
 
           <button
             onClick={() => paginate(1)}
-            className="group flex items-center gap-2 text-[#a09890] hover:text-[#c9a96e] transition-colors cursor-none p-4"
+            className="group flex items-center gap-2 text-[#5a5550] hover:text-[#8a7a5a] transition-colors cursor-none p-4"
             data-cursor-hover
             data-testid="button-next"
           >

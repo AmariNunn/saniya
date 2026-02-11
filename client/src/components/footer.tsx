@@ -18,8 +18,8 @@ export function Footer() {
     <footer
       ref={footerRef}
       data-testid="section-footer"
-      className="relative py-12 md:py-16 px-6 md:px-10 border-t border-white/5"
-      style={{ background: "#0a0a0a" }}
+      className="relative py-12 md:py-16 px-6 md:px-10 border-t border-[#1a1a1a]/10"
+      style={{ background: "#f2efe9" }}
     >
       <div className={`max-w-[1200px] mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -28,7 +28,7 @@ export function Footer() {
               href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#a09890]/60 hover:text-[#c9a96e] transition-colors duration-300 cursor-none"
+              className="text-[#5a5550]/60 hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
               data-cursor-hover
               data-testid="link-instagram-footer"
             >
@@ -36,7 +36,7 @@ export function Footer() {
             </a>
             <a
               href="mailto:hello@saniyallen.com"
-              className="text-[#a09890]/60 hover:text-[#c9a96e] transition-colors duration-300 cursor-none"
+              className="text-[#5a5550]/60 hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
               data-cursor-hover
               data-testid="link-email-footer"
             >
@@ -44,14 +44,14 @@ export function Footer() {
             </a>
           </div>
 
-          <p className="text-[#a09890]/40 text-[10px] tracking-[0.15em] uppercase" data-testid="text-copyright">
+          <p className="text-[#5a5550]/40 text-[10px] tracking-[0.15em] uppercase" data-testid="text-copyright">
             &copy; 2025 Saniya Allen. All Rights Reserved.
           </p>
 
           <button
             data-testid="button-scroll-top"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 text-[#a09890]/40 text-[10px] tracking-[0.15em] uppercase hover:text-[#c9a96e] transition-colors duration-300 cursor-none"
+            className="flex items-center gap-2 text-[#5a5550]/40 text-[10px] tracking-[0.15em] uppercase hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
             data-cursor-hover
           >
             <span>Back to top</span>

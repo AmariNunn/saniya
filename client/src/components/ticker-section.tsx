@@ -32,8 +32,8 @@ export function TickerSection() {
       <div className={`inline-flex ${reverse ? "animate-ticker-reverse" : "animate-ticker"}`}>
         {[...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems].map((item, i) => (
           <span key={i} className="inline-flex items-center gap-3 mx-4">
-            <Star className="w-3 h-3 text-[#c9a96e] fill-[#c9a96e]" />
-            <span className="text-[#f5f0eb]/60 text-xs md:text-sm font-mono tracking-[0.2em] uppercase">
+            <Star className="w-3 h-3 text-[#8a7a5a] fill-[#8a7a5a]" />
+            <span className="text-[#1a1a1a]/50 text-xs md:text-sm font-mono tracking-[0.2em] uppercase">
               {item}
             </span>
           </span>
@@ -46,8 +46,8 @@ export function TickerSection() {
     <section
       ref={sectionRef}
       data-testid="section-ticker"
-      className={`relative py-6 border-y border-white/5 transition-all duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
-      style={{ background: "#0a0a0a" }}
+      className={`relative py-6 border-y border-[#1a1a1a]/10 transition-all duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
+      style={{ background: "#f2efe9" }}
     >
       <TickerRow />
       <TickerRow reverse />

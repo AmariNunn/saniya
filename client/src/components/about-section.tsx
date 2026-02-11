@@ -18,7 +18,7 @@ export function AboutSection() {
       ref={sectionRef}
       data-testid="section-about"
       className="relative py-24 md:py-40 px-6 md:px-10"
-      style={{ background: "#0e0e0e" }}
+      style={{ background: "#f2efe9" }}
     >
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
@@ -37,25 +37,25 @@ export function AboutSection() {
 
           <div className="md:col-span-5 flex flex-col gap-6">
             <div className={`transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <span className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-mono">About</span>
+              <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono">About</span>
             </div>
 
             <div className={`transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <h2 className="font-serif text-3xl md:text-5xl text-[#f5f0eb] font-light leading-tight">
+              <h2 className="font-serif text-3xl md:text-5xl text-[#1a1a1a] font-light leading-tight">
                 Saniya Allen
               </h2>
             </div>
 
-            <div className={`h-px bg-[#c9a96e]/30 transition-all duration-1000 delay-500 ${visible ? "w-full" : "w-0"}`} />
+            <div className={`h-px bg-[#8a7a5a]/30 transition-all duration-1000 delay-500 ${visible ? "w-full" : "w-0"}`} />
 
             <div className={`transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <p className="text-[#a09890] text-sm md:text-base leading-relaxed" data-testid="text-bio">
+              <p className="text-[#5a5550] text-sm md:text-base leading-relaxed" data-testid="text-bio">
                 Nashville-based model with a passion for editorial storytelling, brand campaigns, and creative direction. With experience spanning high-fashion editorials, commercial shoots, and UGC content creation, Saniya brings a unique blend of elegance and authenticity to every project.
               </p>
             </div>
 
             <div className={`transition-all duration-700 delay-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <p className="text-[#a09890]/70 text-sm leading-relaxed">
+              <p className="text-[#5a5550]/70 text-sm leading-relaxed">
                 Featured in Photo Vogue, IRK Magazine Paris, and campaigns for Johanna Ortiz, JBW Watches, Trixie Cosmetics, and more. Available for bookings worldwide.
               </p>
             </div>
@@ -65,7 +65,7 @@ export function AboutSection() {
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#c9a96e] text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-[#e0c68a] cursor-none"
+                className="text-[#8a7a5a] text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-[#6a5a3a] cursor-none"
                 data-cursor-hover
                 data-testid="link-instagram"
               >
@@ -73,7 +73,7 @@ export function AboutSection() {
               </a>
               <button
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="text-[#c9a96e] text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-[#e0c68a] cursor-none"
+                className="text-[#8a7a5a] text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-[#6a5a3a] cursor-none"
                 data-cursor-hover
                 data-testid="link-inquiries-about"
               >

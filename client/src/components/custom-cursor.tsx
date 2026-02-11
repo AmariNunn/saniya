@@ -77,7 +77,7 @@ export function CustomCursor() {
           style={{
             width: isHovering ? 18 : 16,
             height: isHovering ? 18 : 16,
-            backgroundColor: "#f5f0eb",
+            backgroundColor: "#1a1a1a",
             boxShadow: isHovering
               ? "0 0 16px 4px hsl(40 50% 55% / 0.5), 0 0 30px 8px hsl(40 50% 55% / 0.2)"
               : "0 0 10px 3px hsl(40 50% 55% / 0.35), 0 0 20px 6px hsl(40 50% 55% / 0.12)",

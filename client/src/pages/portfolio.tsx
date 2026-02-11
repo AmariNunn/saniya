@@ -11,7 +11,7 @@ import { CustomCursor } from "@/components/custom-cursor";
 
 export default function Portfolio() {
   return (
-    <div className="relative" style={{ background: "#0a0a0a" }}>
+    <div className="relative" style={{ background: "#f2efe9" }}>
       <CustomCursor />
       <Navigation />
       <HeroSection />

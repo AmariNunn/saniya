@@ -107,13 +107,13 @@ export function Carousel3D() {
       data-testid="section-carousel"
       className="relative py-24 md:py-40 overflow-hidden"
       style={{
-        background: "radial-gradient(ellipse at center, #181410 0%, #0a0a0a 70%)",
+        background: "radial-gradient(ellipse at center, #e8e4dc 0%, #f2efe9 70%)",
       }}
     >
       <div className="max-w-[1600px] mx-auto px-6 md:px-10">
         <div className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <span className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Gallery</span>
-          <h2 className="font-serif font-light text-[#f5f0eb] text-2xl md:text-4xl" data-testid="text-carousel-heading">
+          <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Gallery</span>
+          <h2 className="font-serif font-light text-[#1a1a1a] text-2xl md:text-4xl" data-testid="text-carousel-heading">
             The Portfolio
           </h2>
         </div>
