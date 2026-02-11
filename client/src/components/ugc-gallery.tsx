@@ -112,15 +112,15 @@ export function UgcGallery() {
         id="ugc"
         data-testid="section-ugc"
         className="relative py-12 md:py-20 px-6 md:px-10"
-        style={{ background: "#0e0e0e" }}
+        style={{ background: "#f2efe9" }}
       >
         <div className="max-w-[1400px] mx-auto">
           <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-            <span className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Content</span>
+            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Content</span>
           </div>
           <h2
-            className={`font-serif font-light text-[#f5f0eb]/10 leading-none mb-12 md:mb-16 transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-            style={{ fontSize: "clamp(3rem, 8vw, 8rem)", WebkitTextStroke: "1px rgba(201, 169, 110, 0.2)" }}
+            className={`font-serif font-light text-[#0a0a0a]/10 leading-none mb-12 md:mb-16 transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            style={{ fontSize: "clamp(3rem, 8vw, 8rem)", WebkitTextStroke: "1px rgba(100, 80, 50, 0.15)" }}
             data-testid="text-ugc-heading"
           >
             UGC
