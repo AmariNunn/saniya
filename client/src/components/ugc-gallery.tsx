@@ -111,7 +111,7 @@ export function UgcGallery() {
         ref={sectionRef}
         id="ugc"
         data-testid="section-ugc"
-        className="relative py-24 md:py-40 px-6 md:px-10"
+        className="relative py-12 md:py-20 px-6 md:px-10"
         style={{ background: "#0e0e0e" }}
       >
         <div className="max-w-[1400px] mx-auto">
