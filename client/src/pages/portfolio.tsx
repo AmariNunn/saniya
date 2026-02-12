@@ -17,9 +17,9 @@ export default function Portfolio() {
       <HeroSection />
       <AboutSection />
       <TickerSection />
-      <FeaturesGallery />
-      <UgcGallery />
       <Carousel3D />
+      <UgcGallery />
+      <FeaturesGallery />
       <TickerSection />
       <ContactSection />
       <Footer />
