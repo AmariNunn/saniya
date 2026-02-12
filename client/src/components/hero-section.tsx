@@ -52,10 +52,10 @@ export function HeroSection() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url('/images/hero/hero-main.jpg')`,
-            filter: "brightness(0.35) contrast(1.1)",
+            filter: "brightness(0.65) contrast(1.1)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/20 via-transparent to-[#0a0a0a]/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/50" />
       </div>
 
       <div className="relative z-10 text-center px-4">
