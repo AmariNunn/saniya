@@ -115,17 +115,6 @@ export function UgcGallery() {
         style={{ background: "#f2efe9" }}
       >
         <div className="max-w-[1400px] mx-auto">
-          <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">UGC</span>
-          </div>
-          <h2
-            className={`font-serif font-light text-[#0a0a0a]/10 leading-none mb-12 md:mb-16 transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-            style={{ fontSize: "clamp(3rem, 8vw, 8rem)", WebkitTextStroke: "1px rgba(100, 80, 50, 0.15)" }}
-            data-testid="text-ugc-heading"
-          >
-            UGC
-          </h2>
-
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
             {ugcItems.map((item, index) => (
               <div
