@@ -66,15 +66,12 @@ export function FeaturesGallery() {
     <section id="features" data-testid="section-features" className="relative h-screen overflow-hidden" style={{ background: "#f2efe9" }}>
       <div id="features-header" className="absolute top-24 md:top-32 left-0 right-0 z-20 px-6 md:px-10 pointer-events-none">
         <div className="max-w-[1600px] mx-auto">
-          <div className={`transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          <div className={`text-center transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Features</span>
+            <h2 className="font-serif font-light text-[#1a1a1a] text-2xl md:text-4xl" data-testid="text-features-heading">
+              Editorial Work
+            </h2>
           </div>
-          <h2
-            className={`font-serif font-light text-[#1a1a1a]/10 leading-none transition-all duration-1000 delay-200 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-            style={{ fontSize: "clamp(3rem, 8vw, 8rem)", WebkitTextStroke: "1px rgba(100, 80, 50, 0.15)" }}
-            data-testid="text-features-heading"
-          >
-            FEATURES
-          </h2>
         </div>
       </div>
       <div className="relative h-full w-full flex items-center justify-center">
