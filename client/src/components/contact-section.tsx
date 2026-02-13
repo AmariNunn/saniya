@@ -82,7 +82,7 @@ export function ContactSection() {
       <div className="relative z-10 max-w-[600px] mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Get In Touch</span>
-          <h2 className="font-serif font-light text-[#1a1a1a] text-3xl md:text-5xl mb-4" data-testid="text-contact-heading">
+          <h2 className="font-serif font-light text-[#1a1a1a] text-3xl md:text-5xl mb-4 hidden" data-testid="text-contact-heading">
             Inquiries
           </h2>
           <p className="text-[#5a5550] text-sm">

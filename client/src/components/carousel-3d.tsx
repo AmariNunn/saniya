@@ -164,7 +164,7 @@ export function Carousel3D() {
         <div className="max-w-[1600px] mx-auto px-6 md:px-10">
           <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">Portfolio</span>
-            <h2 className="font-serif font-light text-[#1a1a1a] text-2xl md:text-4xl" data-testid="text-carousel-heading">
+            <h2 className="font-serif font-light text-[#1a1a1a] text-2xl md:text-4xl hidden" data-testid="text-carousel-heading">
               The Portfolio
             </h2>
           </div>
