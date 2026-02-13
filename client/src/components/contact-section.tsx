@@ -38,17 +38,10 @@ export function ContactSection() {
     setSubmitting(true);
     setSubmitError(false);
     try {
-      const formData = new URLSearchParams();
-      formData.append("form-name", "contact");
-      formData.append("name", data.name);
-      formData.append("email", data.email);
-      formData.append("subject", data.subject);
-      formData.append("message", data.message);
-
-      const response = await fetch("/", {
+      const response = await fetch("https://formspree.io/f/mojnenap", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString(),
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
@@ -98,20 +91,10 @@ export function ContactSection() {
           </div>
         ) : (
           <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
             onSubmit={form.handleSubmit(onSubmit)}
             className={`space-y-6 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             data-testid="form-contact"
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
-              <label>
-                Don't fill this out: <input name="bot-field" />
-              </label>
-            </p>
 
             <div className="relative">
               <input
