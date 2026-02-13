@@ -26,7 +26,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6">
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/saniyallen"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#5a5550]/60 hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"

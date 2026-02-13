@@ -191,7 +191,7 @@ export function ContactSection() {
 
         <div className={`flex items-center justify-center gap-8 mt-12 transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/saniyallen"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-[#5a5550] text-xs tracking-wider hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"

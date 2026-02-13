@@ -61,7 +61,7 @@ export function AboutSection() {
 
             <div className={`flex gap-6 mt-4 transition-all duration-700 delay-[900ms] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/saniyallen"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#8a7a5a] text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-[#6a5a3a] cursor-none"
