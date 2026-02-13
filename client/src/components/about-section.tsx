@@ -55,7 +55,7 @@ export function AboutSection() {
 
             <div className={`transition-all duration-700 delay-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <p className="text-[#5a5550]/70 text-sm leading-relaxed">
-                Featured in Photo Vogue, IRK Magazine Paris, and campaigns for Johanna Ortiz, JBW Watches, Trixie Cosmetics, and more. Available for bookings worldwide.
+                Featured in Photo Vogue, IRK Magazine Paris, Top Golf China, Sally's Beauty, Pagoda Jewelry, and more. Available for bookings worldwide.
               </p>
             </div>
 
