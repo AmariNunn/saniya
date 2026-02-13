@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Mail, Instagram, Send, CheckCircle } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -199,6 +200,17 @@ export function ContactSection() {
           >
             <Instagram className="w-4 h-4" />
             <span>Instagram</span>
+          </a>
+          <a
+            href="https://www.tiktok.com/@saniya.allen?_r=1&_t=ZP-93q86aIHCt5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-[#5a5550] text-xs tracking-wider hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
+            data-cursor-hover
+            data-testid="link-tiktok-contact"
+          >
+            <SiTiktok className="w-4 h-4" />
+            <span>TikTok</span>
           </a>
           <a
             href="mailto:hello@saniyallen.com"

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Instagram, Mail, ArrowUp } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -33,6 +34,16 @@ export function Footer() {
               data-testid="link-instagram-footer"
             >
               <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@saniya.allen?_r=1&_t=ZP-93q86aIHCt5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#5a5550]/60 hover:text-[#8a7a5a] transition-colors duration-300 cursor-none"
+              data-cursor-hover
+              data-testid="link-tiktok-footer"
+            >
+              <SiTiktok className="w-4 h-4" />
             </a>
             <a
               href="mailto:hello@saniyallen.com"
