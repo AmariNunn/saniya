@@ -21,6 +21,12 @@ export function AboutSection() {
       style={{ background: "#f2efe9" }}
     >
       <div className="max-w-[1200px] mx-auto">
+        <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">About</span>
+          <h2 className="font-serif font-light text-[#1a1a1a] text-2xl md:text-4xl" data-testid="text-about-heading">
+            Saniya Allen
+          </h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
           <div className="md:col-span-7 relative">
             <div className={`overflow-hidden rounded-md transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
@@ -36,16 +42,6 @@ export function AboutSection() {
           </div>
 
           <div className="md:col-span-5 flex flex-col gap-6">
-            <div className={`transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono">About</span>
-            </div>
-
-            <div className={`transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <h2 className="font-serif text-3xl md:text-5xl text-[#1a1a1a] font-light leading-tight">
-                Saniya Allen
-              </h2>
-            </div>
-
             <div className={`h-px bg-[#8a7a5a]/30 transition-all duration-1000 delay-500 ${visible ? "w-full" : "w-0"}`} />
 
             <div className={`transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
