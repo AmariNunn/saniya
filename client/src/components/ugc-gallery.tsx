@@ -115,6 +115,12 @@ export function UgcGallery() {
         style={{ background: "#f2efe9" }}
       >
         <div className="max-w-[1400px] mx-auto">
+          <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <span className="text-[#8a7a5a] text-xs tracking-[0.3em] uppercase font-mono block mb-4">UGC</span>
+            <h2 className="font-serif font-light text-[#1a1a1a] text-2xl md:text-4xl" data-testid="text-ugc-heading">
+              The Media
+            </h2>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
             {ugcItems.map((item, index) => (
               <div
