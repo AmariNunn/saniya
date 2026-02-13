@@ -40,6 +40,7 @@ export function Navigation() {
 
         <div className="hidden md:flex items-center gap-8">
           {[
+            { label: "Portfolio", id: "portfolio" },
             { label: "Features", id: "features" },
             { label: "UGC", id: "ugc" },
             { label: "Inquiries", id: "contact" },
@@ -73,6 +74,7 @@ export function Navigation() {
       >
         <div className="bg-[#f2efe9]/95 backdrop-blur-md border-t border-[#1a1a1a]/10 px-6 py-6 flex flex-col gap-5">
           {[
+            { label: "Portfolio", id: "portfolio" },
             { label: "Features", id: "features" },
             { label: "UGC", id: "ugc" },
             { label: "Inquiries", id: "contact" },
