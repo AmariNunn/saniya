@@ -30,10 +30,10 @@ export function AboutSection() {
               <img
                 src="/images/hero/about_new.jpg"
                 alt="Saniya Allen portrait"
-                className="w-full h-auto object-cover animate-float"
+                className="w-full h-auto object-contain animate-float"
                 loading="lazy"
                 data-testid="img-about"
-                style={{ maxHeight: "70vh" }}
+                style={{ maxHeight: "85vh" }}
               />
             </div>
           </div>
