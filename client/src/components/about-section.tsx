@@ -28,7 +28,7 @@ export function AboutSection() {
           <div className="md:col-span-7 relative">
             <div className={`overflow-hidden rounded-md transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               <img
-                src="/images/hero/about.jpg"
+                src="/images/hero/about_new.jpg"
                 alt="Saniya Allen portrait"
                 className="w-full h-auto object-cover animate-float"
                 loading="lazy"
