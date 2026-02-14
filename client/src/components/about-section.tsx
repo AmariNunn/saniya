@@ -49,7 +49,7 @@ export function AboutSection() {
 
             <div className={`transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <p className="text-[#5a5550] text-sm md:text-base leading-relaxed" data-testid="text-bio">
-                Dallas-based and internationally published, I've spent the past eight years building a versatile modeling career that ranges from e-commerce work to editorial shoots. My experience in front of the camera has shaped a strong understanding of angles, movement, and visual storytelling — skills I naturally bring into my content creation as well. Whether I'm modeling for a campaign or creating short-form videos, my goal is always the same: to make something that feels authentic, captures attention, and helps brands build genuine trust with their audience.
+                Dallas-based and internationally published, I've spent the past eight years building a versatile modeling career that ranges from local e-commerce work to internationally published editorial shoots. My experience in front of the camera has shaped a strong understanding of angles, movement, and visual storytelling — skills I naturally bring into my content creation as well. Whether I'm modeling for a campaign or creating short form videos, my goal is always the same. To make something that feels authentic and helps brands build genuine connections with their audience.
               </p>
             </div>
 

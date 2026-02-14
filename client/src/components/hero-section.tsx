@@ -89,7 +89,7 @@ export function HeroSection() {
           className="text-xs md:text-sm tracking-[0.4em] uppercase text-[#a09890] font-mono"
           data-testid="text-subtitle"
         >
-          Model &middot; Creative &middot; Muse
+          Model &middot; Creator &middot; Muse
         </motion.p>
 
         <motion.div
