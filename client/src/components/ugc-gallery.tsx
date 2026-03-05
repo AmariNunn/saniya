@@ -9,12 +9,16 @@ type GalleryItem = {
   type: "video";
   src: string;
   alt: string;
+} | {
+  type: "vimeo";
+  src: string;
+  alt: string;
 };
 
 const ugcItems: GalleryItem[] = [
   { type: "video", src: "/images/ugc/video-1.mp4", alt: "Video Content 1" },
   { type: "video", src: "/images/ugc/video-5.mov", alt: "Video Content 5" },
-  { type: "image", src: "/images/ugc/ugc-3.jpg", alt: "UGC Content 3" },
+  { type: "vimeo", src: "https://player.vimeo.com/video/1153408595?h=e7f7c36173", alt: "UGC Content 3" },
   { type: "video", src: "/images/ugc/video-2.mp4", alt: "Video Content 2" },
   { type: "video", src: "/images/ugc/video-6.mov", alt: "Video Content 6" },
   { type: "video", src: "/images/ugc/video-4.mov", alt: "Video Content 4" },
@@ -134,6 +138,18 @@ export function UgcGallery() {
               >
                 {item.type === "video" ? (
                   <VideoItem src={item.src} alt={item.alt} />
+                ) : item.type === "vimeo" ? (
+                  <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
+                    <iframe
+                      title={item.alt}
+                      src={`${item.src}&autoplay=1&muted=1&loop=1&background=1`}
+                      className="absolute inset-0 w-full h-full"
+                      frameBorder="0"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                      allowFullScreen
+                    />
+                  </div>
                 ) : (
                   <div className="relative w-full" style={{ aspectRatio: "9/16" }}>
                     <img
@@ -178,6 +194,22 @@ export function UgcGallery() {
                 playsInline
                 controls
                 className="w-full h-full object-cover rounded-md"
+              />
+            </div>
+          ) : ugcItems[lightbox].type === "vimeo" ? (
+            <div
+              className="relative z-10 w-[90vw] max-w-[800px] animate-fade-in-up"
+              style={{ aspectRatio: "16/9" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                title={ugcItems[lightbox].alt}
+                src={`${ugcItems[lightbox].src}&autoplay=1`}
+                className="w-full h-full rounded-md"
+                frameBorder="0"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowFullScreen
               />
             </div>
           ) : (

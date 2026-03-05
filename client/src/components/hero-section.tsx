@@ -48,10 +48,11 @@ export function HeroSection() {
           clipPath: loaded ? "inset(0% 0% 0% 0%)" : "inset(50% 50% 50% 50%)",
         }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
+        <img
+          src="/images/hero/hero-main.jpg"
+          alt="Saniya Allen"
+          className="absolute inset-0 w-full h-full object-contain"
           style={{
-            backgroundImage: `url('/images/hero/hero-main.jpg')`,
             filter: "brightness(0.65) contrast(1.1)",
           }}
         />
