@@ -50,6 +50,15 @@ export function HeroSection() {
       >
         <img
           src="/images/hero/hero-main.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover scale-110"
+          style={{
+            filter: "brightness(0.3) contrast(1.1) blur(40px)",
+          }}
+        />
+        <img
+          src="/images/hero/hero-main.jpg"
           alt="Saniya Allen"
           className="absolute inset-0 w-full h-full object-contain"
           style={{
