@@ -50,19 +50,11 @@ export function HeroSection() {
       >
         <img
           src="/images/hero/hero-main.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover scale-110"
-          style={{
-            filter: "brightness(0.3) contrast(1.1) blur(40px)",
-          }}
-        />
-        <img
-          src="/images/hero/hero-main.jpg"
           alt="Saniya Allen"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-full h-full object-cover"
           style={{
             filter: "brightness(0.65) contrast(1.1)",
+            objectPosition: "center 20%",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/50" />
