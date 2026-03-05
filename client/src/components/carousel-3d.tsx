@@ -155,6 +155,7 @@ export function Carousel3D() {
     <>
       <section
         ref={sectionRef}
+        id="portfolio"
         data-testid="section-carousel"
         className="relative py-20 md:py-32 lg:py-40 overflow-hidden"
         style={{
