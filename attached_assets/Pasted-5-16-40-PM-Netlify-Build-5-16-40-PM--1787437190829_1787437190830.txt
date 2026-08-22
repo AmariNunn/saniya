@@ -1,0 +1,79 @@
+5:16:40 PM: Netlify Build                                                 
+5:16:40 PM: ────────────────────────────────────────────────────────────────
+5:16:40 PM: ​
+5:16:40 PM: ❯ Version
+5:16:40 PM:   @netlify/build 36.4.1
+5:16:40 PM: ​
+5:16:40 PM: ❯ Flags
+5:16:40 PM:   accountId: 67e18d0d655286055bef8bd7
+5:16:40 PM:   baseRelDir: true
+5:16:40 PM:   buildId: 6a8a1f771eecab000864901e
+5:16:40 PM:   deployId: 6a8a1f771eecab0008649020
+5:16:40 PM: ​
+5:16:40 PM: ❯ Current directory
+5:16:40 PM:   /opt/build/repo
+5:16:40 PM: ​
+5:16:40 PM: ❯ Config file
+5:16:40 PM:   /opt/build/repo/netlify.toml
+5:16:40 PM: ​
+5:16:40 PM: ❯ Context
+5:16:40 PM:   production
+5:16:40 PM: ​
+5:16:40 PM: ❯ Installing extensions
+5:16:40 PM:    - neon
+5:16:54 PM: ​
+5:16:54 PM: ❯ Loading extensions
+5:16:54 PM:    - neon
+5:16:55 PM: ​
+5:16:55 PM: build.command from netlify.toml                               
+5:16:55 PM: ────────────────────────────────────────────────────────────────
+5:16:55 PM: ​
+5:16:55 PM: $ npm install --include=dev --no-audit --no-fund && ./node_modules/.bin/vite build
+5:18:06 PM: npm error Exit handler never called!
+5:18:06 PM: npm error This is an error with npm itself. Please report this error at:
+5:18:06 PM: npm error   <https://github.com/npm/cli/issues&gt;
+5:18:06 PM: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2026-08-22T22_16_55_771Z-debug-0.log
+5:18:06 PM: bash: line 1: ./node_modules/.bin/vite: No such file or directory
+5:18:07 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+5:18:07 PM: ​
+5:18:07 PM: "build.command" failed                                        
+5:18:07 PM: ────────────────────────────────────────────────────────────────
+5:18:07 PM: ​
+5:18:07 PM:   Error message
+5:18:07 PM:   Command failed with exit code 127: npm install --include=dev --no-audit --no-fund && ./node_modules/.bin/vite build (https://ntl.fyi/exit-code-127)
+5:18:07 PM: ​
+5:18:07 PM:   Error location
+5:18:07 PM:   In build.command from netlify.toml:
+5:18:07 PM:   npm install --include=dev --no-audit --no-fund && ./node_modules/.bin/vite build
+5:18:07 PM: ​
+5:18:07 PM:   Resolved config
+5:18:07 PM:   build:
+5:18:07 PM:     command: npm install --include=dev --no-audit --no-fund &&
+5:18:07 PM:       ./node_modules/.bin/vite build
+5:18:07 PM:     commandOrigin: config
+5:18:07 PM:     environment:
+5:18:07 PM:       - NODE_VERSION
+5:18:07 PM:       - NPM_VERSION
+5:18:07 PM:       - NPM_FLAGS
+5:18:07 PM:     publish: /opt/build/repo/dist/public
+5:18:07 PM:     publishOrigin: config
+5:18:07 PM:   headers:
+5:18:07 PM:     - for: /*
+5:18:07 PM:       values:
+5:18:07 PM:         X-Content-Type-Options: nosniff
+5:18:07 PM:         X-Frame-Options: DENY
+5:18:07 PM:     - for: /images/*
+5:18:07 PM:       values:
+5:18:07 PM:         Cache-Control: public, max-age=31536000, immutable
+5:18:07 PM:     - for: /assets/*
+5:18:07 PM:       values:
+5:18:07 PM:         Cache-Control: public, max-age=31536000, immutable
+5:18:07 PM:   headersOrigin: config
+5:18:07 PM:   redirects:
+5:18:07 PM:     - from: /*
+5:18:07 PM:       status: 200
+5:18:07 PM:       to: /index.html
+5:18:07 PM:   redirectsOrigin: config
+5:18:07 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+5:18:07 PM: Failing build: Failed to build site
+5:18:07 PM: Finished processing build request in 2m47.222s
