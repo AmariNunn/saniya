@@ -1,11 +1,10 @@
 [build]
-  command = "npm install --include=dev --no-audit --no-fund && ./node_modules/.bin/vite build"
+  command = "./node_modules/.bin/vite build"
   publish = "dist/public"
 
 [build.environment]
   NODE_VERSION = "20"
   NPM_VERSION = "10.8.2"
-  NPM_FLAGS = "--include=dev"
 
 [[redirects]]
   from = "/*"
