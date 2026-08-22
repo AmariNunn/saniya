@@ -1,0 +1,1 @@
+- [Netlify Node runtime](netlify-node-runtime.md) — this project should use Node 20/npm 10.8 on Netlify rather than the default Node 22/npm 10.9 toolchain.
